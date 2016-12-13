@@ -1,0 +1,22 @@
+{
+  "name": "node-suc",
+  "version": "0.0.0",
+  "description": "simple & unmanual config parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TorzoClub/node-suc.git"
+  },
+  "author": "eczn, vec",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TorzoClub/node-suc/issues"
+  },
+  "homepage": "https://github.com/TorzoClub/node-suc#readme",
+  "devDependencies": {
+    "should": "^11.1.2"
+  }
+}
