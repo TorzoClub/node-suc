@@ -108,3 +108,35 @@ describe('列表模式', () => {
     obj.should.has.property('array').length(3);
   });
 });
+
+describe('stringify', () => {
+  const suc = new Suc;
+  it('JS 对象转 Suc', () => {
+    const obj = {
+      num: 999,
+      str: 'hello, world!',
+      bool: true,
+      list: [ 83, true, false, 'ajkljag' ],
+    };
+    let str = suc.stringify(obj);
+
+    str.should.equal(
+      `[num] ${obj.num}\n` +
+      `str >${obj.str}\n` +
+      `[bool] ${obj.bool}\n` +
+
+      `[list]\n` +
+      obj.list.join('\n')
+    );
+  });
+
+  it('不支持的类型', () => {
+    try { suc.stringify({objProperty: {}}) }
+    catch (e) { e.code.should.equal(10) }
+  });
+  it('列表元素中存在不支持的类型', () => {
+    (x => {
+      suc.stringify({ array: [ 666, 333, {} ] })
+    }).should.throw('列表元素中存在不支持的类型');
+  });
+});
