@@ -17,7 +17,14 @@ describe('注释', () => {
     let obj = suc.parse('#jkaljgklajg');
     Object.keys(obj).length.should.equal(0);
   });
-})
+});
+
+describe('空行', () => {
+  const suc = new Suc;
+  it('略过空行', () => {
+    Object.keys(suc.parse('\n\n\n')).length.should.equal(0);
+  })
+});
 
 describe('字符串模式', () => {
   const suc = new Suc;
@@ -62,8 +69,7 @@ describe('数字模式', () => {
 
   it('数字的识别', () => {
     let obj = suc.parse('[pppname]  385993');
-    obj.should.has.property('pppname');
-    obj.pppname.should.equal(385993);
+    obj.should.has.property('pppname').equal(385993);
   });
 
   it('非法数字', () => {
@@ -72,12 +78,29 @@ describe('数字模式', () => {
   });
 
   it('布尔型的识别', () => {
-    let obj = suc.parse('[name] true');
-    obj.should.has.property('name');
-    obj.name.should.equal(true);
+    suc.parse('[name] true').should.has.property('name').equal(true);
+    suc.parse('[name] false').should.has.property('name').equal(false);
   });
   it('非法布尔型', () => {
     try { let obj = suc.parse('[name] ture'); }
     catch (e) { e.code.should.equal(20) }
   });
-})
+});
+
+describe('列表模式', () => {
+  const suc = new Suc;
+  it('未闭合的属性括号', () => {
+    try { suc.parse('[ppp 5838') }
+    catch (e) { e.code.should.equal(10) }
+  });
+
+  it('无属性名', () => {
+    try { suc.parse('[] 999') }
+    catch (e) { e.code.should.equal(11) }
+  })
+
+  it('数组的识别', () => {
+    let obj = suc.parse(`[array] \n999\n888\n777`);
+    obj.should.has.property('array').length(3);
+  })
+});
