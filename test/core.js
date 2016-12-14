@@ -8,6 +8,12 @@ describe('splitLine', () => {
     suc.splitLine('abcdefg\njjklj\n').length.should.equal(3);
     suc.splitLine('\n').length.should.equal(2);
     suc.splitLine('').length.should.equal(1);
+
+    suc.splitLine('\r\n')[0].should.equal('')
+    suc.splitLine('\n')[0].should.equal('')
+
+    suc.splitLine('\n\r\n')[0].should.equal('')
+    suc.splitLine('\n\r\n')[1].should.equal('')
   });
 });
 
