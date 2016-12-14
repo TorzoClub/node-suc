@@ -100,7 +100,11 @@ describe('列表模式', () => {
   })
 
   it('数组的识别', () => {
+    let obj = suc.parse(`[array] \n999\n888\n777\n`);
+    obj.should.has.property('array').length(3);
+  });
+  it('数组元素声明在最后一行', () => {
     let obj = suc.parse(`[array] \n999\n888\n777`);
     obj.should.has.property('array').length(3);
-  })
+  });
 });
