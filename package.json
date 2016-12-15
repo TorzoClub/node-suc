@@ -1,6 +1,6 @@
 {
   "name": "node-suc",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "simple & unmanual config parser",
   "main": "index.js",
   "bin": {
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/TorzoClub/node-suc#readme",
   "devDependencies": {
+    "benchmark": "^2.1.2",
     "should": "^11.1.2"
   },
   "dependencies": {

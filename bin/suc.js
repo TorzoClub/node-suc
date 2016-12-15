@@ -32,7 +32,24 @@ const yargs = require('yargs')
     }
   })
 
-  .command('complie', '将 JSON 转为 Suc')
+  .command('compile [filepath]', '将 JSON 转为 Suc', {}, (argv) => {
+    if (argv.filepath) {
+      let jsonStr = fs.readFileSync(argv.filepath).toString();
+      const obj = JSON.parse(jsonStr);
+      let str = suc.stringify(obj);
+
+      if (argv.o) {
+        if (typeof(argv.o) === 'boolean') {
+          argv.o = 'a.suc';
+        }
+        fs.writeFileSync(argv.o, str);
+      } else {
+        console.log(str);
+      }
+    } else {
+      console.error('未指定 JSON 文件');
+    }
+  })
 
   .command('list', '查看 SUC 库')
   .command('view', '查看 SUC 库中的项目')
