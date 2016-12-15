@@ -1,6 +1,6 @@
 {
   "name": "node-suc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "simple & unmanual config parser",
   "main": "index.js",
   "bin": {
