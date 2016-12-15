@@ -121,18 +121,22 @@ describe('stringify', () => {
     const obj = {
       num: 999,
       str: 'hello, world!',
+      to: [ 'abc@ttt.com', 'bca@a.com', 'z@jjj.com' ],
       bool: true,
       list: [ 83, true, false, 'ajkljag' ],
     };
     let str = suc.stringify(obj);
-
     str.should.equal(
       `[num] ${obj.num}\n` +
       `str >${obj.str}\n` +
+
+      `[to]\n` +
+      obj.to.join('\n') + '\n\n' +
+
       `[bool] ${obj.bool}\n` +
 
       `[list]\n` +
-      obj.list.join('\n')
+      obj.list.join('\n') + '\n'
     );
   });
 
